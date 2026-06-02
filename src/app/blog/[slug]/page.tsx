@@ -238,7 +238,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const d = new Date(post.date);
   const dateStr = `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 
-  const relatedPosts = content.relatedSlugs
+  const CONTENT_SLUGS = [
+    'progressive-die-five-keys',
+    'spcc-vs-spfh590-automotive',
+    'iatf-16949-ppap-checklist',
+    'ev-transition-metal-stamping',
+  ];
+  const relatedPosts = CONTENT_SLUGS
+    .filter((s) => s !== slug)
     .map((s) => posts.find((p) => p.slug === s))
     .filter((p): p is (typeof posts)[number] => p !== undefined);
 
@@ -280,6 +287,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           )}
 
+          {/* ── FAQ ── */}
+          {content.faq && content.faq.length > 0 && (
+            <section className="mx-auto max-w-[720px] border-t border-[#E8E4DC] py-12">
+              <p className="mb-8 font-mono text-[10px] tracking-[0.25em] text-[#767676]">常見問題</p>
+              <div className="space-y-8">
+                {content.faq.map((item, i) => (
+                  <div key={i}>
+                    <h3 className="mb-2 text-sm font-bold text-black">{item.q}</h3>
+                    <p className="text-sm leading-relaxed text-[#767676]">{item.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           {/* ── Related internal links ── */}
           {content.relatedLinks.length > 0 && (
             <section className="mx-auto max-w-[720px] border-t border-[#E8E4DC] py-12">
@@ -292,52 +314,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </section>
           )}
         </div>
-
-        {/* ── FAQ ── */}
-        {content.faq && content.faq.length > 0 && (
-          <section className="border-t border-[#E8E4DC] bg-[#F5F3EE] py-16">
-            <div className="mx-auto max-w-[720px] px-6 lg:px-0">
-              <p className="mb-8 font-mono text-[10px] tracking-[0.25em] text-[#767676]">常見問題</p>
-              <div className="space-y-8">
-                {content.faq.map((item, i) => (
-                  <div key={i}>
-                    <h3 className="mb-2 text-sm font-bold text-black">{item.q}</h3>
-                    <p className="text-sm leading-relaxed text-[#767676]">{item.a}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* ── RFQ CTA ── */}
-        <section className="border-t border-[#E8E4DC] bg-[#064d8f] py-16">
-          <div className="mx-auto max-w-7xl px-6 lg:px-12">
-            <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="mb-2 font-mono text-xs tracking-[0.2em] text-white/50">與我們合作</p>
-                <h2 className="text-2xl font-bold text-white lg:text-3xl">
-                  對這份技術筆記有疑問？
-                </h2>
-                <p className="mt-2 text-sm text-white/70">富惟工程團隊提供製程諮詢與詢價服務。</p>
-              </div>
-              <div className="flex shrink-0 gap-3">
-                <a
-                  href="mailto:sales@fullwei.com"
-                  className="border border-white/30 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-                >
-                  聯絡業務團隊
-                </a>
-                <Link
-                  href="/about"
-                  className="bg-white px-6 py-3 text-sm font-medium text-[#064d8f] transition-colors hover:bg-white/90"
-                >
-                  了解富惟
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ── Related posts ── */}
         {relatedPosts.length > 0 && (
