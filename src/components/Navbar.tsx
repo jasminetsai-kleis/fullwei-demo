@@ -104,6 +104,7 @@ export default function Navbar() {
             { label: n.smartFactory, href: '/#smart-factory' },
             { label: n.about,        href: '/about'          },
             { label: n.careers,      href: '/careers'        },
+            { label: n.blog,         href: '/blog'           },
           ].map((link) => (
             <a
               key={link.href}

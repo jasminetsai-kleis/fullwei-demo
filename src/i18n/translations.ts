@@ -9,7 +9,14 @@ const t = {
       smartFactory: '智造工廠',
       about: '關於我們',
       careers: '加入我們',
+      blog: 'Blog',
       rfq: '詢價',
+    },
+    blog: {
+      heroEyebrow: 'ENGINEERING NOTES',
+      heroTitle: '來自製造現場的技術筆記',
+      allCategories: '全部',
+      loadMore: '載入更多',
     },
     hero: {
       eyebrow: 'EST. 1964 · 屏東，台灣',
@@ -163,7 +170,14 @@ const t = {
       smartFactory: 'Smart Factory',
       about: 'About',
       careers: 'Careers',
+      blog: 'Blog',
       rfq: 'Request RFQ',
+    },
+    blog: {
+      heroEyebrow: 'ENGINEERING NOTES',
+      heroTitle: 'Technical Notes from the Shop Floor',
+      allCategories: 'All',
+      loadMore: 'Load more',
     },
     hero: {
       eyebrow: 'EST. 1964 · PINGTUNG, TAIWAN',
@@ -316,7 +330,14 @@ const t = {
       smartFactory: 'Nhà máy thông minh',
       about: 'Về chúng tôi',
       careers: 'Tuyển dụng',
+      blog: 'Blog',
       rfq: 'Yêu cầu báo giá',
+    },
+    blog: {
+      heroEyebrow: 'ENGINEERING NOTES',
+      heroTitle: 'Ghi chú kỹ thuật từ xưởng sản xuất',
+      allCategories: 'Tất cả',
+      loadMore: 'Xem thêm',
     },
     hero: {
       eyebrow: 'EST. 1964 · BÌNH ĐÔNG, ĐÀI LOAN',
@@ -469,7 +490,14 @@ const t = {
       smartFactory: 'スマート工場',
       about: '会社概要',
       careers: '採用情報',
+      blog: 'Blog',
       rfq: '見積依頼',
+    },
+    blog: {
+      heroEyebrow: 'ENGINEERING NOTES',
+      heroTitle: '製造現場からの技術ノート',
+      allCategories: 'すべて',
+      loadMore: 'もっと見る',
     },
     hero: {
       eyebrow: 'EST. 1964 · 屏東, 台湾',
