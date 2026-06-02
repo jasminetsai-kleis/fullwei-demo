@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -24,102 +25,10 @@ const NAV_LABELS: Record<string, { zh: string; en: string }> = {
 
 const SECTION_IDS = ['overview', 'specs', 'custom', 'process', 'qc', 'apps', 'eng', 'faq'];
 
-// ─── Hero SVGs per product (light tones for white bg) ────────
-function ExhaustSVG() {
-  return (
-    <svg viewBox="0 0 400 300" className="w-full max-w-sm opacity-90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="0" y1="0" x2="400" y2="300" stroke="rgba(0,0,0,0.03)" strokeWidth="1" />
-      <circle cx="80" cy="150" r="50" stroke="#E8E4DC" strokeWidth="1" />
-      <circle cx="80" cy="150" r="35" stroke="#064d8f" strokeWidth="1.5" />
-      <circle cx="80" cy="150" r="18" stroke="#D4CFC8" strokeWidth="0.5" />
-      <circle cx="80" cy="150" r="5" fill="#064d8f" />
-      <path d="M 130 130 Q 200 80 280 100 Q 340 115 360 150" stroke="#064d8f" strokeWidth="2" strokeLinecap="round" />
-      <path d="M 130 170 Q 200 220 280 200 Q 340 185 360 150" stroke="#064d8f" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="360" cy="150" r="28" stroke="#E8E4DC" strokeWidth="1" />
-      <circle cx="360" cy="150" r="18" stroke="#064d8f" strokeWidth="1" opacity="0.6" />
-      <circle cx="360" cy="150" r="5" fill="#064d8f" opacity="0.6" />
-      <line x1="80" y1="100" x2="80" y2="70" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="80" y1="70" x2="160" y2="70" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="165" y="74" fill="#A8A4A0" fontSize="9" fontFamily="monospace">OD Ø80</text>
-      <line x1="130" y1="150" x2="130" y2="40" stroke="#E8E4DC" strokeWidth="0.5" strokeDasharray="3 4" />
-      <line x1="360" y1="150" x2="360" y2="40" stroke="#E8E4DC" strokeWidth="0.5" strokeDasharray="3 4" />
-      <line x1="130" y1="44" x2="360" y2="44" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="210" y="38" fill="#A8A4A0" fontSize="9" fontFamily="monospace">L=1,240mm</text>
-      {([[20,20],[380,20],[20,280],[380,280]] as [number,number][]).map(([x,y],i) => {
-        const sx = x < 200 ? 1 : -1; const sy = y < 150 ? 1 : -1;
-        return <g key={i}><line x1={x} y1={y} x2={x+sx*16} y2={y} stroke="#D4CFC8" strokeWidth="1"/><line x1={x} y1={y} x2={x} y2={y+sy*16} stroke="#D4CFC8" strokeWidth="1"/></g>;
-      })}
-    </svg>
-  );
-}
-
-function FrameSVG() {
-  return (
-    <svg viewBox="0 0 400 300" className="w-full max-w-sm opacity-90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="80" y="60" width="240" height="180" stroke="rgba(0,0,0,0.04)" strokeWidth="0.5" />
-      <path d="M 100 240 L 100 100 L 180 80 L 300 80 L 300 240" stroke="#064d8f" strokeWidth="2" strokeLinejoin="round" />
-      <path d="M 100 160 L 300 160" stroke="#064d8f" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
-      <path d="M 180 80 L 180 240" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="100" cy="100" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="100" cy="100" r="3" fill="#064d8f" />
-      <circle cx="300" cy="80" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="300" cy="80" r="3" fill="#064d8f" />
-      <circle cx="100" cy="240" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="100" cy="240" r="3" fill="#064d8f" opacity="0.7" />
-      <circle cx="300" cy="240" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="300" cy="240" r="3" fill="#064d8f" opacity="0.7" />
-      <line x1="100" y1="60" x2="100" y2="40" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="300" y1="60" x2="300" y2="40" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="100" y1="44" x2="300" y2="44" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="165" y="38" fill="#A8A4A0" fontSize="9" fontFamily="monospace">W=450mm</text>
-      <line x1="320" y1="80" x2="340" y2="80" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="320" y1="240" x2="340" y2="240" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="336" y1="80" x2="336" y2="240" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="342" y="165" fill="#A8A4A0" fontSize="9" fontFamily="monospace">H=320mm</text>
-      {([[20,20],[380,20],[20,280],[380,280]] as [number,number][]).map(([x,y],i) => {
-        const sx = x < 200 ? 1 : -1; const sy = y < 150 ? 1 : -1;
-        return <g key={i}><line x1={x} y1={y} x2={x+sx*16} y2={y} stroke="#D4CFC8" strokeWidth="1"/><line x1={x} y1={y} x2={x} y2={y+sy*16} stroke="#D4CFC8" strokeWidth="1"/></g>;
-      })}
-    </svg>
-  );
-}
-
-function BracketSVG() {
-  return (
-    <svg viewBox="0 0 400 300" className="w-full max-w-sm opacity-90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="60" y="80" width="200" height="40" stroke="#064d8f" strokeWidth="2" />
-      <rect x="60" y="120" width="40" height="100" stroke="#064d8f" strokeWidth="2" />
-      <path d="M 60 120 L 260 120" stroke="#E8E4DC" strokeWidth="0.5" />
-      <circle cx="100" cy="100" r="10" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="100" cy="100" r="4" fill="#064d8f" />
-      <circle cx="160" cy="100" r="10" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="160" cy="100" r="4" fill="#064d8f" />
-      <circle cx="220" cy="100" r="10" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="220" cy="100" r="4" fill="#064d8f" />
-      <circle cx="80" cy="160" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="80" cy="160" r="3" fill="#064d8f" opacity="0.7" />
-      <circle cx="80" cy="200" r="8" stroke="#D4CFC8" strokeWidth="1" />
-      <circle cx="80" cy="200" r="3" fill="#064d8f" opacity="0.7" />
-      <line x1="60" y1="60" x2="260" y2="60" stroke="#E8E4DC" strokeWidth="0.5" strokeDasharray="3 4" />
-      <line x1="60" y1="65" x2="60" y2="75" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="260" y1="65" x2="260" y2="75" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="120" y="57" fill="#A8A4A0" fontSize="9" fontFamily="monospace">200±0.05</text>
-      <line x1="290" y1="80" x2="310" y2="80" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="290" y1="220" x2="310" y2="220" stroke="#D4CFC8" strokeWidth="0.5" />
-      <line x1="306" y1="80" x2="306" y2="220" stroke="#D4CFC8" strokeWidth="0.5" />
-      <text x="312" y="155" fill="#A8A4A0" fontSize="9" fontFamily="monospace">140±0.02</text>
-      {([[20,20],[380,20],[20,280],[380,280]] as [number,number][]).map(([x,y],i) => {
-        const sx = x < 200 ? 1 : -1; const sy = y < 150 ? 1 : -1;
-        return <g key={i}><line x1={x} y1={y} x2={x+sx*16} y2={y} stroke="#D4CFC8" strokeWidth="1"/><line x1={x} y1={y} x2={x} y2={y+sy*16} stroke="#D4CFC8" strokeWidth="1"/></g>;
-      })}
-    </svg>
-  );
-}
-
-const HERO_SVG: Record<ProductSlug, React.ReactNode> = {
-  'exhaust-systems':      <ExhaustSVG />,
-  'motorcycle-frame':     <FrameSVG />,
-  'automotive-brackets':  <BracketSVG />,
+const HERO_IMG: Record<ProductSlug, string> = {
+  'exhaust-systems':     '/pdp-1.png',
+  'motorcycle-frame':    '/pdp-2.png',
+  'automotive-brackets': '/pdp-3.png',
 };
 
 // ─── FAQ accordion item ───────────────────────────────────────
@@ -325,9 +234,16 @@ export default function ProductPage() {
               </div>
             </div>
 
-            {/* Right: SVG */}
-            <div className="flex items-center justify-center lg:w-[380px]">
-              {HERO_SVG[slug]}
+            {/* Right: product image */}
+            <div className="relative flex items-center justify-center lg:w-[420px]">
+              <Image
+                src={HERO_IMG[slug]}
+                alt={c.title}
+                width={420}
+                height={420}
+                className="h-auto w-full object-contain"
+                priority
+              />
             </div>
           </div>
         </div>

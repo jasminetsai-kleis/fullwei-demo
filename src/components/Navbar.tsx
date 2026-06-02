@@ -1,22 +1,91 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useQuote } from '@/context/QuoteContext';
 import t from '@/i18n/translations';
 import type { Lang } from '@/i18n/translations';
 
-export default function Navbar() {
+const langLabels: Record<Lang, string> = { zh: '中', en: 'EN', vi: 'VI', ja: '日' };
+const langNames: Record<Lang, string> = { zh: '中文', en: 'English', vi: 'Tiếng Việt', ja: '日本語' };
+
+const homepageOnlyLangs: Lang[] = ['vi', 'ja'];
+
+function LangDropdown({ isHome, className }: { isHome: boolean; className?: string }) {
   const { lang, setLang } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function onMouseDown(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', onMouseDown);
+    return () => document.removeEventListener('mousedown', onMouseDown);
+  }, []);
+
+  function handleSelect(code: Lang) {
+    if (homepageOnlyLangs.includes(code) && !isHome) return;
+    setLang(code);
+    setOpen(false);
+  }
+
+  return (
+    <div className={`relative ${className ?? ''}`} ref={ref}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        className="flex items-center gap-1 text-xs font-medium text-[#767676] transition-colors hover:text-black"
+      >
+        {langLabels[lang]}
+        <svg
+          width="8"
+          height="5"
+          viewBox="0 0 8 5"
+          fill="none"
+          className={`transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+        >
+          <path d="M1 1l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 w-32 border border-[#E8E4DC] bg-white shadow-sm">
+          {(['zh', 'en', 'vi', 'ja'] as Lang[]).map(code => {
+            const disabled = homepageOnlyLangs.includes(code) && !isHome;
+            return (
+              <button
+                key={code}
+                onClick={() => handleSelect(code)}
+                disabled={disabled}
+                className={`w-full px-4 py-2 text-left text-xs ${
+                  lang === code
+                    ? 'bg-[#F8F6F2] font-medium text-[#064d8f]'
+                    : disabled
+                    ? 'cursor-default text-[#D0CCC4]'
+                    : 'text-[#767676] hover:bg-[#F8F6F2] hover:text-black'
+                }`}
+              >
+                {langNames[code]}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function Navbar() {
+  const { lang } = useLanguage();
   const { totalCount, openModal } = useQuote();
   const pathname = usePathname();
   const isHome = pathname === '/';
   const n = t[lang].nav;
 
-  function handleLangClick(code: Lang) {
-    if (code === 'vi' && !isHome) return;
-    setLang(code);
-  }
+  const quoteLabel =
+    lang === 'zh' ? '詢價單' : lang === 'vi' ? 'Báo giá' : lang === 'ja' ? '見積依頼' : 'Quote Request';
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#E8E4DC] bg-white/95 backdrop-blur-md">
@@ -47,27 +116,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex">
-          {/* Language toggle */}
-          <div className="flex items-center gap-1 text-xs font-medium">
-            {(['zh', 'en', 'vi'] as Lang[]).map((code, i) => (
-              <span key={code} className="flex items-center gap-1">
-                {i > 0 && <span className="text-[#E8E4DC]">/</span>}
-                <button
-                  onClick={() => handleLangClick(code)}
-                  aria-label={`Switch to ${code}`}
-                  className={
-                    lang === code
-                      ? 'text-[#064d8f]'
-                      : code === 'vi' && !isHome
-                      ? 'cursor-default text-[#E8E4DC]'
-                      : 'text-[#767676] transition-colors hover:text-black'
-                  }
-                >
-                  {code === 'zh' ? '中' : code.toUpperCase()}
-                </button>
-              </span>
-            ))}
-          </div>
+          <LangDropdown isHome={isHome} />
 
           {/* Quote Request */}
           <button
@@ -79,34 +128,16 @@ export default function Navbar() {
               <path d="M4 3V2a2.5 2.5 0 015 0v1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
               <path d="M4 7h5M4 9.5h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
             </svg>
-            {lang === 'zh' ? '詢價單' : lang === 'vi' ? 'Báo giá' : 'Quote Request'}
+            {quoteLabel}
             {totalCount > 0 && (
               <span className="font-mono">({totalCount})</span>
             )}
           </button>
         </div>
 
-        {/* Mobile: lang + quote icon + hamburger */}
+        {/* Mobile: lang dropdown + quote icon + hamburger */}
         <div className="flex items-center gap-3 md:hidden">
-          <div className="flex items-center gap-1 text-xs font-medium">
-            {(['zh', 'en', 'vi'] as Lang[]).map((code, i) => (
-              <span key={code} className="flex items-center gap-1">
-                {i > 0 && <span className="text-[#E8E4DC]">/</span>}
-                <button
-                  onClick={() => handleLangClick(code)}
-                  className={
-                    lang === code
-                      ? 'text-[#064d8f]'
-                      : code === 'vi' && !isHome
-                      ? 'cursor-default text-[#E8E4DC]'
-                      : 'text-[#767676]'
-                  }
-                >
-                  {code === 'zh' ? '中' : code.toUpperCase()}
-                </button>
-              </span>
-            ))}
-          </div>
+          <LangDropdown isHome={isHome} />
           <button
             onClick={openModal}
             className="relative flex h-9 w-9 items-center justify-center border border-[#E8E4DC] text-[#767676] transition-colors hover:border-[#064d8f] hover:text-[#064d8f]"

@@ -25,31 +25,40 @@ export default function ProductPillars() {
           {p.items.map((item, idx) => (
             <div
               key={item.num}
-              className="group grid bg-[#F5F3EE] p-8 transition-colors duration-300 hover:bg-white lg:grid-cols-12 lg:gap-12"
+              className="group grid bg-[#F5F3EE] transition-colors duration-300 hover:bg-white lg:grid-cols-12"
             >
-              <div className="mb-4 lg:col-span-1 lg:mb-0">
-                <span className="font-mono text-xs text-[#767676]/40">{item.num}</span>
-              </div>
-              <div className="mb-6 lg:col-span-3 lg:mb-0">
-                <h3 className="mb-1 text-2xl font-bold text-black">{item.title}</h3>
-                {item.subtitle && <p className="text-sm text-[#767676]">{item.subtitle}</p>}
-              </div>
-              <div className="mb-6 lg:col-span-5 lg:mb-0">
-                <p className="mb-4 text-sm leading-relaxed text-[#767676]">{item.desc}</p>
-                <p className="font-mono text-xs text-[#767676]">{item.process}</p>
-              </div>
-              <div className="flex flex-col gap-4 lg:col-span-3 lg:items-end">
-                <div className="flex flex-wrap gap-2 lg:justify-end">
-                  {item.tags.map((tag) => (
-                    <span key={tag} className="border border-[#E8E4DC] px-2.5 py-1 text-xs text-[#767676]">
-                      {tag}
-                    </span>
-                  ))}
+              {/* Text content */}
+              <div className="grid items-center gap-6 p-8 lg:col-span-9 lg:grid-cols-9 lg:gap-10 lg:pr-10">
+                <div className="hidden lg:col-span-1 lg:block">
+                  <span className="font-mono text-xs text-[#767676]/40">{item.num}</span>
                 </div>
-                <Link href={`/products/${PRODUCT_SLUGS[idx]}`} className="flex items-center gap-2 text-xs font-medium text-[#064d8f] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="lg:col-span-3">
+                  <span className="mb-1 font-mono text-xs text-[#767676]/40 lg:hidden">{item.num}</span>
+                  <h3 className="mb-1 text-2xl font-bold text-black">{item.title}</h3>
+                  {item.subtitle && <p className="text-sm text-[#767676]">{item.subtitle}</p>}
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="mb-3 text-sm leading-relaxed text-[#767676]">{item.desc}</p>
+                  <p className="font-mono text-xs text-[#767676]/60">{item.process}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
+                      <span key={tag} className="border border-[#E8E4DC] px-2.5 py-1 text-xs text-[#767676]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="flex items-center border-t border-[#E8E4DC] px-8 py-6 lg:col-span-3 lg:border-l lg:border-t-0 lg:px-10 lg:py-0">
+                <Link
+                  href={`/products/${PRODUCT_SLUGS[idx]}`}
+                  className="group/cta flex w-full items-center justify-between gap-4 bg-[#064d8f] px-6 py-4 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#0a5fa8]"
+                >
                   {p.viewDetails}
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 transition-transform duration-200 group-hover/cta:translate-x-1">
+                    <path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </Link>
               </div>

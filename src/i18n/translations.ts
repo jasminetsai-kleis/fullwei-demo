@@ -1,4 +1,4 @@
-export type Lang = 'zh' | 'en' | 'vi';
+export type Lang = 'zh' | 'en' | 'vi' | 'ja';
 
 const t = {
   zh: {
@@ -57,7 +57,7 @@ const t = {
     products: {
       eyebrow: '產品線',
       heading: '三大產品線',
-      viewDetails: '查看製程詳情',
+      viewDetails: '查看產品詳情',
       items: [
         {
           num: '01',
@@ -211,7 +211,7 @@ const t = {
     products: {
       eyebrow: 'PRODUCT LINES',
       heading: 'Product Lines',
-      viewDetails: 'View capability details',
+      viewDetails: 'View product details',
       items: [
         {
           num: '01',
@@ -364,7 +364,7 @@ const t = {
     products: {
       eyebrow: 'DÒNG SẢN PHẨM',
       heading: 'Dòng sản phẩm',
-      viewDetails: 'Xem chi tiết năng lực',
+      viewDetails: 'Xem chi tiết sản phẩm',
       items: [
         {
           num: '01',
@@ -458,6 +458,159 @@ const t = {
       locations: ['Đào Viên, Đài Loan (Trụ sở)', 'Nhà máy thông minh Bình Đông', 'Phật Sơn, Trung Quốc (Liên doanh)'],
       email: 'sales@fullwei.com',
       copyright: '© 2025 Fullwei Industrial Co., Ltd. Bảo lưu mọi quyền.',
+      certs: ['IATF 16949', 'ISO 14001', 'ISO 45001'],
+    },
+  },
+  ja: {
+    nav: {
+      brandSub: 'インダストリアル',
+      products: '製品',
+      capabilities: '製造能力',
+      smartFactory: 'スマート工場',
+      about: '会社概要',
+      careers: '採用情報',
+      rfq: '見積依頼',
+    },
+    hero: {
+      eyebrow: 'EST. 1964 · 屏東, 台湾',
+      h1: ['精密金属部品を、', '世界トップクラスの', '自動車ブランドへ', '届けています。'],
+      accentLine: 2,
+      sub: '60年以上のプレス加工・溶接・パイプ加工の技術力で、\nHondaグローバルサプライチェーンに重要部品を\n提供しています。',
+      cta1: '製造能力を見る',
+      cta2: 'お問い合わせ',
+      stats: [
+        { value: '60+',      label: '年の実績',    sub: 'Est. 1964'  },
+        { value: '3',        label: '生産拠点',     sub: 'TW · CN'    },
+        { value: 'NT$500M',  label: 'スマート工場', sub: '投資額'      },
+        { value: '2025',     label: '第1期稼働',    sub: '屏東'        },
+      ],
+    },
+    capabilities: {
+      eyebrow: 'コア技術',
+      heading: '3つのコア技術',
+      subtitle: '製造プロセスが価値を定義する。\n私たちの強みは60年の歴史に支えられています。',
+      learnMore: '詳細を見る',
+      items: [
+        {
+          num: '01',
+          title: '金属プレス加工',
+          subtitle: 'Metal Stamping',
+          desc: '複雑な自動車構造部品向けの高精度プログレッシブ・トランスファーダイプレス加工。',
+          specs: ['最大トン数：800T', '公差：±0.02mm', '素材：SPCC, SPFH, SPHC, HSLA', '年間生産能力：5,000万個以上'],
+        },
+        {
+          num: '02',
+          title: '溶接・組立',
+          subtitle: 'Welding & Assembly',
+          desc: '全溶接箇所でロボットMIG/MAGおよびマニュアルTIG溶接と完全なインプロセス品質管理を実施。',
+          specs: ['ロボットMIG/MAG溶接', 'マニュアルTIG精密溶接', '溶接検査：VT + PT', 'ISO 3834準拠プロセス'],
+        },
+        {
+          num: '03',
+          title: 'パイプ加工',
+          subtitle: 'Tube Processing',
+          desc: '排気システムおよび構造チューブアセンブリ向けのCNCチューブ曲げ・ハイドロフォーミング・端部成形。',
+          specs: ['外径範囲：20mm～120mm', 'CNC多軸曲げ加工', 'ハイドロフォーミング対応', '漏れ試験：100%実施'],
+        },
+      ],
+    },
+    products: {
+      eyebrow: '製品ライン',
+      heading: '3つの製品ライン',
+      viewDetails: '製品詳細を見る',
+      items: [
+        {
+          num: '01',
+          title: '排気システム',
+          subtitle: '',
+          desc: 'マフラー、排気管、触媒コンバーターハウジング。耐熱性と静音性能を追求した設計。',
+          tags: ['乗用車', 'Hondaサプライチェーン', '輸出向け'],
+          process: 'チューブ曲げ → MIG溶接 → 熱処理 → 100%漏れ試験',
+        },
+        {
+          num: '02',
+          title: 'バイクフレーム部品',
+          subtitle: '',
+          desc: 'OEM寸法公差で製造された構造フレームブラケット、サブフレーム、スイングアームアセンブリ。',
+          tags: ['二輪車', 'Honda・Yamaha Tier', '大量生産'],
+          process: 'プログレッシブプレス → ロボット溶接 → CMM検査',
+        },
+        {
+          num: '03',
+          title: '自動車用ブラケット',
+          subtitle: '',
+          desc: 'インストルメントパネルブラケット、エアコン取付部材、オーディオフレーム——内装システムを確実に固定する精密部品。',
+          tags: ['内装システム', 'Tier 1サプライ', '多素材対応'],
+          process: 'トランスファーダイプレス → スポット溶接 → 表面処理',
+        },
+      ],
+    },
+    smartFactory: {
+      eyebrow: 'スマート工場',
+      h2a: '製造哲学の',
+      h2b: '再定義。',
+      h2c: 'スマート製造の次の10年へ。',
+      p1: '2019年、富惟はNT$5億を屏東大慶工業区に投資し、完全自動化スマート工場を建設しました。これは単なる拡張ではなく、製造哲学の根本的な再構築です。',
+      p2: '人手依存からデータ駆動の生産へ。安定した品質から予測的品質保証へ。すべての溶接、すべてのプレス、すべての曲げ加工——すべてを追跡・計測・最適化します。',
+      metrics: [
+        { value: '98.7%',   label: 'OEE目標'  },
+        { value: '0.3 ppm', label: '不良率'    },
+        { value: '24/7',    label: 'MES監視'   },
+      ],
+      cta: 'スマート工場を見る',
+      svgLabel: '屏東スマート工場 · 第1期 · 2025',
+    },
+    footprint: {
+      eyebrow: 'グローバル拠点',
+      heading: 'グローバル拠点',
+      locations: [
+        {
+          code: 'TW-01',
+          city: '桃園',
+          country: '台湾',
+          label: '（本社）',
+          role: '本社',
+          desc: '1964年創業。台湾の主要プレス・溶接生産拠点。Honda台湾と輸出市場を担当。',
+          coords: '24.9936° N, 121.3010° E',
+        },
+        {
+          code: 'TW-02',
+          city: '屏東',
+          country: '台湾',
+          label: '（スマート工場）',
+          role: 'スマート工場 · 第1期 2025稼働',
+          desc: 'NT$5億の完全自動化施設。ロボット溶接セル、自動プレスライン、MESリアルタイム監視。',
+          coords: '22.6748° N, 120.4873° E',
+        },
+        {
+          code: 'CN-01',
+          city: '佛山',
+          country: '中国',
+          label: '（合弁会社）',
+          role: 'Yutaka Gikenとの合弁',
+          desc: '豊富汽配——Yutaka Gikenとの合弁で、広州Hondaに重要な排気システムを供給。',
+          coords: '23.0215° N, 113.1214° E',
+        },
+      ],
+    },
+    footer: {
+      eyebrow: 'パートナーシップ',
+      ctaHeading: '長期製造パートナーをお探しですか？',
+      ctaSub: '富惟工業との協業をご検討ください。',
+      cta1: '製造能力資料を請求する',
+      cta2: '営業チームに連絡する',
+      brandSub: '富惟工業股份有限公司',
+      brandDesc: '精密金属部品で\n自動車産業を支える\nSince 1964.',
+      nav: {
+        products: '製品',
+        company: '会社',
+        contact: 'お問い合わせ',
+      },
+      products: ['排気システム', 'フレーム部品', '自動車用ブラケット'],
+      company: ['会社概要', 'スマート工場', '採用情報', 'サステナビリティ'],
+      locations: ['桃園（台湾）本社', '屏東スマート工場', '佛山（中国）合弁'],
+      email: 'sales@fullwei.com',
+      copyright: '© 2025 富惟工業股份有限公司。All rights reserved.',
       certs: ['IATF 16949', 'ISO 14001', 'ISO 45001'],
     },
   },
