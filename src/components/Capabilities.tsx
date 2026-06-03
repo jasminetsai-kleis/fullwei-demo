@@ -1,8 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
 import t from '@/i18n/translations';
+
+const CAPABILITY_SLUGS = ['metal-stamping', 'welding-assembly', 'tube-processing'];
 
 export default function Capabilities() {
   const { lang } = useLanguage();
@@ -73,15 +76,15 @@ export default function Capabilities() {
                       ))}
                     </ul>
 
-                    <a
-                      href="#"
+                    <Link
+                      href={`/capabilities/${CAPABILITY_SLUGS[idx]}`}
                       className="group/link mt-auto inline-flex items-center gap-2 self-start border-b border-[#064d8f] pb-px text-xs font-semibold tracking-wide text-[#064d8f] transition-colors hover:text-[#0a5fa8]"
                     >
                       {c.learnMore}
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="transition-transform group-hover/link:translate-x-0.5">
                         <path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
