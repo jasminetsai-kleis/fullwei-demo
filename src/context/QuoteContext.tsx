@@ -8,7 +8,6 @@ export interface QuoteItem {
   titleEn: string;
   categoryZh: string;
   categoryEn: string;
-  qty: number;
 }
 
 export interface ToastInfo {
@@ -18,9 +17,8 @@ export interface ToastInfo {
 
 interface QuoteContextType {
   items: QuoteItem[];
-  addToQuote: (item: Omit<QuoteItem, 'qty'>) => void;
+  addToQuote: (item: QuoteItem) => void;
   removeFromQuote: (slug: string) => void;
-  setQty: (slug: string, qty: number) => void;
   clearQuote: () => void;
   totalCount: number;
   isModalOpen: boolean;
@@ -34,7 +32,6 @@ const QuoteCtx = createContext<QuoteContextType>({
   items: [],
   addToQuote: () => {},
   removeFromQuote: () => {},
-  setQty: () => {},
   clearQuote: () => {},
   totalCount: 0,
   isModalOpen: false,
@@ -44,8 +41,14 @@ const QuoteCtx = createContext<QuoteContextType>({
   dismissToast: () => {},
 });
 
-const STORAGE_KEY = 'fullwei_quote_v1';
+const STORAGE_KEY = 'fullwei_quote_v2';
+const EXPIRY_MS = 7 * 24 * 60 * 60 * 1000;
 const TOAST_MS = 4500;
+
+interface StorageShape {
+  items: QuoteItem[];
+  savedAt: number;
+}
 
 export function QuoteProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<QuoteItem[]>([]);
@@ -56,23 +59,28 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setItems(JSON.parse(raw));
+      if (raw) {
+        const parsed: StorageShape = JSON.parse(raw);
+        if (Date.now() - parsed.savedAt < EXPIRY_MS) {
+          setItems(parsed.items);
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      }
     } catch {}
   }, []);
 
   useEffect(() => {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); } catch {}
+    try {
+      const data: StorageShape = { items, savedAt: Date.now() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {}
   }, [items]);
 
-  const addToQuote = useCallback((item: Omit<QuoteItem, 'qty'>) => {
+  const addToQuote = useCallback((item: QuoteItem) => {
     setItems(prev => {
-      const idx = prev.findIndex(i => i.slug === item.slug);
-      if (idx >= 0) {
-        const next = [...prev];
-        next[idx] = { ...next[idx], qty: next[idx].qty + 1 };
-        return next;
-      }
-      return [...prev, { ...item, qty: 1 }];
+      if (prev.some(i => i.slug === item.slug)) return prev;
+      return [...prev, item];
     });
     if (timerRef.current) clearTimeout(timerRef.current);
     setToast({ titleZh: item.titleZh, titleEn: item.titleEn });
@@ -83,14 +91,6 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
     setItems(prev => prev.filter(i => i.slug !== slug));
   }, []);
 
-  const setQty = useCallback((slug: string, qty: number) => {
-    if (qty < 1) {
-      setItems(prev => prev.filter(i => i.slug !== slug));
-    } else {
-      setItems(prev => prev.map(i => i.slug === slug ? { ...i, qty } : i));
-    }
-  }, []);
-
   const clearQuote = useCallback(() => setItems([]), []);
   const openModal = useCallback(() => setIsModalOpen(true), []);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
@@ -99,12 +99,11 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
     setToast(null);
   }, []);
 
-  const totalCount = items.reduce((s, i) => s + i.qty, 0);
-
   return (
     <QuoteCtx.Provider value={{
-      items, addToQuote, removeFromQuote, setQty, clearQuote,
-      totalCount, isModalOpen, openModal, closeModal,
+      items, addToQuote, removeFromQuote, clearQuote,
+      totalCount: items.length,
+      isModalOpen, openModal, closeModal,
       toast, dismissToast,
     }}>
       {children}

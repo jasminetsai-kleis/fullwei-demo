@@ -154,11 +154,6 @@ export default function ProductPage() {
                 <path d="M6.5 2V11M2 6.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               {lang === 'zh' ? '加入詢價單' : 'Add to Quote'}
-              {isInQuote && (
-                <span className="ml-0.5 font-mono text-xs text-white/70">
-                  ({items.find(i => i.slug === slug)?.qty ?? 1})
-                </span>
-              )}
             </>
           )}
         </button>

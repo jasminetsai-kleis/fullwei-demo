@@ -141,18 +141,16 @@ export default function Navbar() {
           <LangDropdown isHome={isHome} />
           <button
             onClick={openModal}
-            className="relative flex h-9 w-9 items-center justify-center border border-[#E8E4DC] text-[#767676] transition-colors hover:border-[#064d8f] hover:text-[#064d8f]"
+            className="flex items-center gap-1.5 border border-[#E8E4DC] px-3 py-2 text-xs font-medium text-[#767676] transition-colors hover:border-[#064d8f] hover:text-[#064d8f]"
             aria-label="Quote request"
           >
-            <svg width="14" height="14" viewBox="0 0 13 13" fill="none">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
               <rect x="1" y="3" width="11" height="9" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
               <path d="M4 3V2a2.5 2.5 0 015 0v1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
               <path d="M4 7h5M4 9.5h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
             </svg>
             {totalCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center bg-[#C8102E] font-mono text-[9px] text-white">
-                {totalCount}
-              </span>
+              <span className="font-mono">({totalCount})</span>
             )}
           </button>
           <button className="flex flex-col gap-1.5 p-2">
