@@ -1,10 +1,12 @@
 'use client';
 
 import { useLanguage } from '@/context/LanguageContext';
+import { useQuote } from '@/context/QuoteContext';
 import t from '@/i18n/translations';
 
 export default function Footer() {
   const { lang } = useLanguage();
+  const { openModal } = useQuote();
   const f = t[lang].footer;
 
   return (
@@ -19,12 +21,12 @@ export default function Footer() {
               <p className="mt-3 text-sm text-white/60">{f.ctaSub}</p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row">
-              <a href="#" className="inline-flex items-center justify-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-[#064d8f] transition-colors hover:bg-white/90">
-                {f.cta1}
-              </a>
-              <a href="#" className="inline-flex items-center justify-center gap-2 border border-white/35 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10">
+              <button
+                onClick={openModal}
+                className="inline-flex items-center justify-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-[#064d8f] transition-colors hover:bg-white/90"
+              >
                 {f.cta2}
-              </a>
+              </button>
             </div>
           </div>
         </div>

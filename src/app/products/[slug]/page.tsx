@@ -431,40 +431,6 @@ export default function ProductPage() {
             </div>
           </section>
 
-          {/* ── CTA ── */}
-          <section className="bg-[#1A1A1A] py-16">
-            <div className="max-w-2xl">
-              <p className="mb-3 font-mono text-xs tracking-[0.2em] text-[#064d8f]">
-                {lang === 'zh' ? '與我們合作' : 'PARTNER WITH US'}
-              </p>
-              <h2 className="mb-3 text-3xl font-bold text-white">{c.ctaHeading}</h2>
-              <p className="mb-8 text-sm leading-relaxed text-[#767676]">{c.ctaSub}</p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap">
-                {/* Primary: Add to Quote */}
-                <button
-                  onClick={handleAddToQuote}
-                  className={`inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-200 ${
-                    justAdded
-                      ? 'bg-[#0a5fa8] text-white'
-                      : 'bg-[#064d8f] text-white hover:bg-[#0a5fa8]'
-                  }`}
-                >
-                  {justAdded ? (
-                    <>{lang === 'zh' ? '✓ 已加入' : '✓ Added'}</>
-                  ) : (
-                    <>{lang === 'zh' ? '＋ 加入詢價單' : '+ Add to Quote'}</>
-                  )}
-                </button>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center gap-2 border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white"
-                >
-                  {c.ctaBtn2}
-                </a>
-              </div>
-            </div>
-          </section>
-
         </div>
       </div>
 

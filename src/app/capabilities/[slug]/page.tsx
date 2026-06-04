@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/context/LanguageContext';
-import { useQuote } from '@/context/QuoteContext';
 import { processes } from '@/data/processes';
 import type { ProcessSlug, ProcessLang } from '@/data/processes';
 
@@ -34,7 +33,6 @@ export default function CapabilityPage() {
   const params = useParams();
   const slug = params.slug as ProcessSlug;
   const { lang } = useLanguage();
-  const { openModal } = useQuote();
 
   const process = processes.find((p) => p.slug === slug);
   const cl = lang === 'en' ? 'en' : 'zh'; // process data carries zh/en; other langs fall back to zh
@@ -312,37 +310,6 @@ export default function CapabilityPage() {
                   </svg>
                 </Link>
               ))}
-            </div>
-          </section>
-
-          {/* ── CTA ── */}
-          <section className="bg-[#1A1A1A] py-16">
-            <div className="max-w-2xl">
-              <p className="mb-3 font-mono text-xs tracking-[0.2em] text-[#064d8f]">
-                {cl === 'zh' ? '與我們合作' : 'PARTNER WITH US'}
-              </p>
-              <h2 className="mb-3 text-3xl font-bold text-white">{c.ctaHeading}</h2>
-              <p className="mb-8 text-sm leading-relaxed text-[#767676]">{c.ctaSub}</p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center gap-2 border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-[#1A1A1A]"
-                >
-                  {c.ctaBtn1}
-                </button>
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center gap-2 border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white"
-                >
-                  {c.ctaBtn2}
-                </button>
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center gap-2 border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white"
-                >
-                  {c.ctaBtn3}
-                </button>
-              </div>
             </div>
           </section>
 

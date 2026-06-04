@@ -31,6 +31,13 @@ body {
 ::-webkit-scrollbar-track { background: #1A1A1A; }
 ::-webkit-scrollbar-thumb { background: #064d8f; border-radius: 2px; }
 
+/* Light gray scrollbar — opt-in via .scrollbar-light (e.g. quote modal) */
+.scrollbar-light { scrollbar-width: thin; scrollbar-color: #C8C4BC #EDEAE4; }
+.scrollbar-light::-webkit-scrollbar { width: 8px; }
+.scrollbar-light::-webkit-scrollbar-track { background: #EDEAE4; }
+.scrollbar-light::-webkit-scrollbar-thumb { background: #C8C4BC; border-radius: 4px; }
+.scrollbar-light::-webkit-scrollbar-thumb:hover { background: #A8A4A0; }
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }

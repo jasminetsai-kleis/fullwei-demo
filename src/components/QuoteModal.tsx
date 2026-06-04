@@ -29,8 +29,8 @@ const TXT = {
     title: '詢價單',
     itemsHeading: '詢價產品',
     clearAll: '清空',
-    empty: '詢價單是空的',
-    emptyHint: '在產品頁點擊「加入詢價單」以新增產品',
+    empty: '可以加入有興趣的產品',
+    emptyHint: '可在產品頁點擊「加入詢價單」新增產品，或可不指定產品直接填寫表單',
     formHeading: '填寫資訊',
     company: '公司名稱',
     contact: '聯絡人',
@@ -50,6 +50,7 @@ const TXT = {
     required: '必填',
     continueShopping: '繼續瀏覽',
     submit: '送出詢價',
+    replyTime: '回覆時間：1 個工作天',
     successTitle: '詢價單已送出',
     successBody: '感謝您的詢問。業務團隊將於 1 個工作日內以您提供的 Email 回覆。',
     refLabel: '詢價編號',
@@ -61,8 +62,8 @@ const TXT = {
     title: 'Quote Request',
     itemsHeading: 'Quoted Products',
     clearAll: 'Clear all',
-    empty: 'Your quote list is empty',
-    emptyHint: 'Click "Add to Quote" on any product page to get started',
+    empty: 'Add products you’re interested in',
+    emptyHint: 'Click "Add to Quote" on any product page, or just fill out the form without selecting products',
     formHeading: 'Fill Information',
     company: 'Company Name',
     contact: 'Contact Person',
@@ -82,6 +83,7 @@ const TXT = {
     required: 'required',
     continueShopping: 'Continue Browsing',
     submit: 'Submit Request',
+    replyTime: 'Response time: 1 business day',
     successTitle: 'Quote Request Submitted',
     successBody: 'Thank you. Our sales team will reply within 1 business day at the email you provided.',
     refLabel: 'Reference No.',
@@ -301,12 +303,12 @@ export default function QuoteModal() {
               </div>
 
               {/* Right: form */}
-              <div className="hidden flex-1 flex-col overflow-y-auto lg:flex">
+              <div className="scrollbar-light hidden flex-1 flex-col overflow-y-auto lg:flex">
                 <div className="shrink-0 border-b border-[#E5E0D8] px-6 py-3">
                   <span className="font-mono text-[10px] tracking-[0.2em] text-[#A8A4A0]">{t.formHeading}</span>
                 </div>
 
-                <form id="rfq-form" onSubmit={handleSubmit} className="flex-1 space-y-4 overflow-y-auto px-6 py-5">
+                <form id="rfq-form" onSubmit={handleSubmit} className="scrollbar-light flex-1 space-y-4 overflow-y-auto px-6 py-5">
 
                   {/* Company */}
                   <div>
@@ -470,10 +472,13 @@ export default function QuoteModal() {
                 className="border border-[#D4CFC8] px-5 py-2.5 text-sm text-[#6B6F76] transition-colors hover:border-[#1A1D21] hover:text-[#1A1D21]">
                 {t.continueShopping}
               </button>
-              <button form="rfq-form" type="submit" disabled={items.length === 0}
-                className="bg-[#1E5A8A] px-7 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#2366A0] disabled:cursor-not-allowed disabled:opacity-40">
-                {t.submit}
-              </button>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-[#A8A4A0]">{t.replyTime}</span>
+                <button form="rfq-form" type="submit"
+                  className="bg-[#1E5A8A] px-7 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#2366A0]">
+                  {t.submit}
+                </button>
+              </div>
             </div>
           </>
         )}
