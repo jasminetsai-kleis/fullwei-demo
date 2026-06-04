@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
-import { posts, CATEGORIES, CATEGORY_COLORS, type CategoryId } from '@/data/posts';
+import { posts, CATEGORIES, type CategoryId } from '@/data/posts';
+import CoverImage from '@/components/CoverImage';
 import t from '@/i18n/translations';
 
 const PER_PAGE = 6;
@@ -83,18 +84,12 @@ export default function BlogContent() {
           {visible.map((post) => (
             <article key={post.id} className="group bg-white transition-colors hover:bg-[#F8F6F2]">
               {/* Thumbnail */}
-              <div className={`relative h-44 overflow-hidden ${CATEGORY_COLORS[post.category]}`}>
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
-                    backgroundSize: '18px 18px',
-                  }}
-                />
-                <span className="absolute bottom-4 left-6 font-mono text-[10px] tracking-[0.25em] text-white/50 uppercase">
-                  {getCategoryLabel(post.category)}
-                </span>
-              </div>
+              <CoverImage
+                slug={post.slug}
+                category={post.category}
+                heightClass="h-44"
+                label={getCategoryLabel(post.category)}
+              />
 
               {/* Content */}
               <div className="flex flex-col gap-3 p-6">
@@ -102,9 +97,11 @@ export default function BlogContent() {
                   {getCategoryLabel(post.category)}
                 </span>
                 <h2 className="text-base font-bold leading-snug text-black group-hover:text-[#064d8f] transition-colors">
-                  {post.title}
+                  {lang === 'zh' ? post.title : post.titleEn}
                 </h2>
-                <p className="text-sm leading-relaxed text-[#767676] line-clamp-2">{post.excerpt}</p>
+                <p className="text-sm leading-relaxed text-[#767676] line-clamp-2">
+                  {lang === 'zh' ? post.excerpt : post.excerptEn}
+                </p>
                 <div className="mt-2 flex items-center justify-between">
                   <time className="font-mono text-xs text-[#767676]/60">{formatDate(post.date, lang)}</time>
                   <Link
