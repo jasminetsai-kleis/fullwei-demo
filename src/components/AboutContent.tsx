@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/context/LanguageContext';
+import CompanyProfile from '@/components/CompanyProfile';
 
 const timeline = [
   {
@@ -419,31 +420,8 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ── Footer CTA ── */}
-      <section className="bg-[#F5F3EE] py-20">
-        <div className="mx-auto max-w-7xl px-6 text-center lg:px-12">
-          <p className="mb-4 font-mono text-xs tracking-[0.2em] text-[#064d8f]">
-            {isZh ? '下一步' : 'NEXT STEP'}
-          </p>
-          <h2 className="mb-8 text-2xl font-bold text-black lg:text-3xl">
-            {isZh ? '了解我們的製程能力，或直接聯絡業務。' : 'Explore our capabilities — or talk to our sales team.'}
-          </h2>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="/#capabilities"
-              className="inline-flex items-center gap-2 bg-[#064d8f] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#0a5fa8]"
-            >
-              {isZh ? '探索製程能力' : 'Explore Capabilities'}
-            </a>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 border border-black px-7 py-3.5 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white"
-            >
-              {isZh ? '聯絡業務團隊' : 'Contact Sales Team'}
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ── 8. Company Profile (AI-readable spec sheet) ── */}
+      <CompanyProfile id="company" />
     </>
   );
 }

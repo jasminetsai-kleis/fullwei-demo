@@ -4,6 +4,7 @@ import Capabilities from "@/components/Capabilities";
 import ProductPillars from "@/components/ProductPillars";
 import SmartFactory from "@/components/SmartFactory";
 import GlobalFootprint from "@/components/GlobalFootprint";
+import CompanyProfile from "@/components/CompanyProfile";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <ProductPillars />
         <SmartFactory />
         <GlobalFootprint />
+        <CompanyProfile id="company" />
       </main>
       <Footer />
     </>
