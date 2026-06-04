@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useQuote } from '@/context/QuoteContext';
 import { useLanguage } from '@/context/LanguageContext';
+import QuoteIcon from '@/components/QuoteIcon';
 
 const SLUG_NUM: Record<string, string> = {
   'exhaust-systems':     '01',
@@ -257,11 +258,7 @@ export default function QuoteModal() {
                 <div className="flex-1 overflow-y-auto">
                   {items.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-16 text-center">
-                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="mb-4 text-[#D4CFC8]">
-                        <rect x="8" y="12" width="24" height="20" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                        <path d="M14 12V9a6 6 0 0112 0v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                        <path d="M15 22h10M15 27h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                      </svg>
+                      <QuoteIcon size={40} strokeWidth={1.4} className="mb-4 text-[#D4CFC8]" />
                       <p className="mb-1 text-sm font-medium text-[#6B6F76]">{t.empty}</p>
                       <p className="max-w-[220px] text-xs text-[#A8A4A0]">{t.emptyHint}</p>
                     </div>

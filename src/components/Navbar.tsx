@@ -8,6 +8,7 @@ import { useQuote } from '@/context/QuoteContext';
 import t from '@/i18n/translations';
 import type { Lang } from '@/i18n/translations';
 import SiteSwitcher from '@/components/SiteSwitcher';
+import QuoteIcon from '@/components/QuoteIcon';
 
 const langLabels: Record<Lang, string> = { zh: '中', en: 'EN', vi: 'VI', ja: '日' };
 const langNames: Record<Lang, string> = { zh: '中文', en: 'English', vi: 'Tiếng Việt', ja: '日本語' };
@@ -128,11 +129,7 @@ export default function Navbar() {
             onClick={openModal}
             className="flex items-center gap-2 border border-[#064d8f] px-4 py-2 text-xs font-medium text-[#064d8f] transition-all duration-200 hover:bg-[#064d8f] hover:text-white"
           >
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <rect x="1" y="3" width="11" height="9" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M4 3V2a2.5 2.5 0 015 0v1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-              <path d="M4 7h5M4 9.5h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-            </svg>
+            <QuoteIcon size={14} />
             {quoteLabel}
             {totalCount > 0 && (
               <span className="font-mono">({totalCount})</span>
@@ -149,11 +146,7 @@ export default function Navbar() {
             className="flex items-center gap-1.5 border border-[#E8E4DC] px-3 py-2 text-xs font-medium text-[#767676] transition-colors hover:border-[#064d8f] hover:text-[#064d8f]"
             aria-label="Quote request"
           >
-            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-              <rect x="1" y="3" width="11" height="9" rx="0.5" stroke="currentColor" strokeWidth="1.2" />
-              <path d="M4 3V2a2.5 2.5 0 015 0v1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-              <path d="M4 7h5M4 9.5h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-            </svg>
+            <QuoteIcon size={14} />
             {totalCount > 0 && (
               <span className="font-mono">({totalCount})</span>
             )}
