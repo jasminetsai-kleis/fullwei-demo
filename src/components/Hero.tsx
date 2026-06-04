@@ -2,10 +2,12 @@
 
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
+import { useQuote } from '@/context/QuoteContext';
 import t from '@/i18n/translations';
 
 export default function Hero() {
   const { lang } = useLanguage();
+  const { openModal } = useQuote();
   const h = t[lang].hero;
 
   return (
@@ -62,12 +64,12 @@ export default function Hero() {
                 <path d="M2 7H12M8 3L12 7L8 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
-            <a
-              href="#contact"
+            <button
+              onClick={openModal}
               className="inline-flex items-center justify-center gap-2 border border-white/50 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:border-white hover:bg-white/10"
             >
               {h.cta2}
-            </a>
+            </button>
           </div>
         </div>
       </div>
