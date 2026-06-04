@@ -16,9 +16,17 @@ import CoverImage from '@/components/CoverImage';
 // Slugs that have full article content (others are listing-only and 404 on click).
 const CONTENT_SLUGS = [
   'progressive-die-five-keys',
+  'robot-mig-exhaust-optimization',
+  'cnc-tube-springback-compensation',
+  'hydroforming-vs-stamping-structural',
   'spcc-vs-spfh590-automotive',
+  'hot-formed-vs-hsla-comparison',
+  'exhaust-alloy-409l-439-304',
   'iatf-16949-ppap-checklist',
+  'taiwan-auto-parts-tier1-qualification',
   'ev-transition-metal-stamping',
+  'honda-supply-chain-restructure-taiwan',
+  'smart-factory-roi-sme',
   'tier1-exhaust-system-manufacturing-guide',
   'how-to-choose-exhaust-welding-manufacturer',
   'low-distortion-thin-wall-stainless-exhaust-welding',

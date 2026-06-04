@@ -10,9 +10,17 @@ import { getPostContent } from '@/data/post-content';
 export function generateStaticParams() {
   return Object.keys({
     'progressive-die-five-keys':                          true,
+    'robot-mig-exhaust-optimization':                     true,
+    'cnc-tube-springback-compensation':                   true,
+    'hydroforming-vs-stamping-structural':                true,
     'spcc-vs-spfh590-automotive':                         true,
+    'hot-formed-vs-hsla-comparison':                      true,
+    'exhaust-alloy-409l-439-304':                         true,
     'iatf-16949-ppap-checklist':                          true,
+    'taiwan-auto-parts-tier1-qualification':              true,
     'ev-transition-metal-stamping':                       true,
+    'honda-supply-chain-restructure-taiwan':              true,
+    'smart-factory-roi-sme':                              true,
     'tier1-exhaust-system-manufacturing-guide':           true,
     'how-to-choose-exhaust-welding-manufacturer':         true,
     'low-distortion-thin-wall-stainless-exhaust-welding': true,
