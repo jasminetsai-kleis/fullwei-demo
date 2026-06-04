@@ -2,47 +2,70 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import CompanyProfile from '@/components/CompanyProfile';
+import FootprintMap from '@/components/FootprintMap';
 
+// 沿革時間軸 — 中英雙語；年份未經富惟核實者以〔待確認〕標示，避免 overclaim。
 const timeline = [
   {
-    year: '1964',
-    titleZh: '三重建廠',
-    titleEn: 'Founded in Sanchung',
-    descZh: '創立於三重，從機車零件起家，奠定金屬沖壓工藝根基。',
-    descEn: 'Established in Sanchung, beginning with motorcycle parts and laying the groundwork for precision metal stamping.',
+    id: 'founded',
+    yearZh: '1964',
+    yearEn: '1964',
+    titleZh: '創立，從機車零件起家',
+    titleEn: 'Founded',
+    descZh: '從機車零件起家，奠定金屬沖壓工藝根基。〔起家地點：三重／桃園 待確認〕',
+    descEn: 'Began with motorcycle parts, laying the groundwork for precision metal stamping. [Founding location: Sanchung / Taoyuan — TBC]',
   },
   {
-    year: '1980s',
-    titleZh: '本田合作啟動',
-    titleEn: 'Honda Partnership Begins',
-    descZh: '正式成為 Honda 汽車零組件供應商，開啟長達四十年的深度合作關係。',
-    descEn: 'Became an official Honda automotive components supplier, beginning a partnership spanning four decades.',
+    id: 'honda',
+    yearZh: '〔待確認〕',
+    yearEn: 'TBC',
+    titleZh: '與 Honda 供應鏈展開合作',
+    titleEn: 'First Honda Partnership',
+    descZh: '正式進入 Honda 供應鏈，開啟長期深度合作關係。',
+    descEn: "Entered Honda's supply chain, beginning a long-term partnership.",
   },
   {
-    year: '1995',
+    id: 'foshan',
+    yearZh: '〔待確認〕',
+    yearEn: 'TBC',
     titleZh: '佛山據點成立',
-    titleEn: 'Foshan Facility Established',
-    descZh: '進入中國市場，於廣東佛山設立生產基地，跟隨 Honda 全球佈局深化。',
-    descEn: "Entered the Chinese market, establishing a production base in Foshan, Guangdong following Honda's global expansion.",
+    titleEn: 'Foshan Facility',
+    descZh: '於廣東佛山設立生產基地，跟隨 Honda 全球佈局深化。',
+    descEn: "Established a production base in Foshan, Guangdong, following Honda's global expansion.",
   },
   {
-    year: '2008',
-    titleZh: '丰富汽配合資成立',
-    titleEn: 'Fengfu Auto Parts JV',
-    descZh: '與豐技研（Yutaka Giken）合資成立丰富汽配，專供廣州 Honda 關鍵排氣系統組件。',
-    descEn: 'Established Fengfu Auto Parts through a joint venture with Yutaka Giken Co., Ltd., supplying Guangzhou Honda with exhaust system components.',
+    id: 'jv',
+    yearZh: '〔待確認〕',
+    yearEn: 'TBC',
+    titleZh: '與豐技研合資成立丰富汽配',
+    titleEn: 'JV with Yutaka Giken',
+    descZh: '與豐技研（Yutaka Giken）合資成立丰富汽配，專供廣州本田關鍵排氣系統。',
+    descEn: 'Established Fengfu Auto Parts in a joint venture with Yutaka Giken, supplying critical exhaust systems to Guangzhou Honda.',
   },
   {
-    year: '2019',
-    titleZh: 'NT$500M 智造廠投資',
-    titleEn: 'NT$500M Smart Factory Investment',
+    id: 'vietnam',
+    yearZh: '〔待確認〕',
+    yearEn: 'TBC',
+    titleZh: '越南設立子公司（3 家）',
+    titleEn: 'Vietnam Subsidiaries',
+    descZh: '於越南設立 3 家子公司，以機車為主、兼做汽車，產品線與台灣不完全相同。',
+    descEn: 'Established three subsidiaries in Vietnam — motorcycle-led and also serving automotive, a product line that differs from Taiwan.',
+  },
+  {
+    id: 'smart-factory',
+    yearZh: '2019',
+    yearEn: '2019',
+    titleZh: '投資 5 億，啟動屏東大慶智造工廠',
+    titleEn: 'NT$500M Smart Factory',
     descZh: '投入 NT$500M 於屏東大慶工業區，啟動全自動化智慧工廠計畫。',
     descEn: 'Committed NT$500M to build a fully automated smart factory in Pingtung Dakeng Industrial Park.',
   },
   {
-    year: '2025',
-    titleZh: '一期正式上線',
-    titleEn: 'Phase 1 Online',
+    id: 'phase1',
+    yearZh: '2025',
+    yearEn: '2025',
+    titleZh: '智造工廠一期啟用',
+    titleEn: 'Smart Factory Phase 1 Online',
     descZh: '屏東大慶智造工廠一期啟用，機器人焊接與自動化沖壓產線全面投產。',
     descEn: 'Pingtung Smart Factory Phase 1 operational — robotic welding cells and automated stamping lines fully commissioned.',
   },
@@ -180,27 +203,46 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ── 2. Heritage Timeline ── */}
-      <section className="bg-[#F5F3EE] py-24 lg:py-32">
+      {/* ── 2. Group Overview & Heritage ── */}
+      <section id="group" className="scroll-mt-24 bg-[#F5F3EE] py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <p className="mb-3 font-mono text-xs tracking-[0.2em] text-[#064d8f]">
-            {isZh ? '企業沿革' : 'HERITAGE'}
+            {isZh ? '集團全貌與沿革' : 'GROUP & HERITAGE'}
           </p>
-          <h2 className="mb-16 text-3xl font-bold text-black lg:text-4xl">
-            {isZh ? '六十年工藝積累' : 'Six Decades of Craft'}
+          <h2 className="mb-6 text-3xl font-bold text-black lg:text-4xl">
+            {isZh ? '一個集團，六十年積累' : 'One Group, Six Decades'}
           </h2>
+          <p className="mb-12 max-w-2xl text-base leading-relaxed text-[#767676]">
+            {isZh
+              ? '富惟為台越母子集團、兩個獨立法人。台灣（屏東總部）以汽車零組件為主，越南（北寧、峴港等子公司）以機車為主、兼做汽車，兩邊產品線並不完全相同；並於河內與日本設有業務與技術聯絡據點。先在互動地圖上看懂集團佈局，再循時間軸理解這份信任如何被六十年累積出來。'
+              : 'Fullwei is a Taiwan–Vietnam parent-subsidiary group of two independent legal entities. Taiwan (Pingtung HQ) focuses on automotive components; Vietnam (subsidiaries in Bắc Ninh, Đà Nẵng and more) is motorcycle-led while also serving automotive — the product lines are not identical — with liaison offices in Hanoi and Japan. Explore the group on the interactive map, then follow the timeline of how this trust was built over sixty years.'}
+          </p>
 
+          {/* 2a. Group footprint — interactive map */}
+          <p className="mb-6 font-mono text-xs tracking-[0.2em] text-[#767676]">
+            {isZh ? '全球據點 · 互動地圖' : 'GLOBAL FOOTPRINT · INTERACTIVE MAP'}
+          </p>
+          <div className="mb-20">
+            <FootprintMap />
+          </div>
+
+          {/* 2b. Heritage Timeline */}
+          <p className="mb-6 font-mono text-xs tracking-[0.2em] text-[#767676]">
+            {isZh ? '沿革時間軸' : 'HERITAGE TIMELINE'}
+          </p>
           <div className="relative">
             <div className="absolute left-0 top-0 h-full w-px bg-[#D4CFC8] lg:left-[112px]" />
             <div className="space-y-10">
               {timeline.map((item) => (
-                <div key={item.year} className="relative flex gap-6 pl-6 lg:gap-0 lg:pl-0">
+                <div key={item.id} className="relative flex gap-6 pl-6 lg:gap-0 lg:pl-0">
                   <div className="hidden w-28 shrink-0 pt-0.5 text-right font-mono text-sm font-bold text-black lg:block">
-                    {item.year}
+                    {isZh ? item.yearZh : item.yearEn}
                   </div>
                   <div className="absolute left-[-5px] top-[6px] h-2.5 w-2.5 rounded-full bg-[#064d8f] ring-2 ring-[#F5F3EE] lg:left-[107px]" />
                   <div className="flex-1 pb-2 lg:pl-10">
-                    <span className="mb-1 inline-block font-mono text-xs text-[#767676] lg:hidden">{item.year}</span>
+                    <span className="mb-1 inline-block font-mono text-xs text-[#767676] lg:hidden">
+                      {isZh ? item.yearZh : item.yearEn}
+                    </span>
                     <h3 className="mb-1.5 text-base font-semibold text-black">
                       {isZh ? item.titleZh : item.titleEn}
                     </h3>
@@ -211,6 +253,18 @@ export default function AboutContent() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* 2c. Pending Fullwei confirmation */}
+          <div className="mt-16 border-l-2 border-[#C8102E] bg-white/60 p-6">
+            <p className="mb-2 font-mono text-xs tracking-[0.15em] text-[#C8102E]">
+              {isZh ? '⚠ 待富惟提供／確認' : '⚠ PENDING FULLWEI CONFIRMATION'}
+            </p>
+            <p className="text-sm leading-relaxed text-[#767676]">
+              {isZh
+                ? '全球據點地址與電話已依富惟官方網站「全球據點」更新；以下仍待富惟提供／確認：1964 起家地點與各沿革里程碑的確切年份；越南各子公司的分工與主力產品；佛山、日本等歷史與現況據點的角色釐清；各廠產能數據與歷史照片；越南站網域與可導流的對應語言頁面。'
+                : 'Global-site addresses and phone numbers follow Fullwei’s official “Global Locations” page. Still pending from Fullwei: the 1964 founding location and the exact year of each heritage milestone; the division of work and lead products of each Vietnam subsidiary; clarification of historical/current sites such as Foshan and Japan; per-plant capacity data and historical photos; the Vietnam site domain and the corresponding localized pages for cross-site routing.'}
+            </p>
           </div>
         </div>
       </section>
