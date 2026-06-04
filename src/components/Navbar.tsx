@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useQuote } from '@/context/QuoteContext';
 import t from '@/i18n/translations';
 import type { Lang } from '@/i18n/translations';
+import SiteSwitcher from '@/components/SiteSwitcher';
 
 const langLabels: Record<Lang, string> = { zh: '中', en: 'EN', vi: 'VI', ja: '日' };
 const langNames: Record<Lang, string> = { zh: '中文', en: 'English', vi: 'Tiếng Việt', ja: '日本語' };
@@ -91,10 +93,10 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#E8E4DC] bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-12">
         {/* Logo */}
-        <a href="/" className="flex items-baseline gap-3">
+        <Link href="/" className="flex items-baseline gap-3">
           <span className="text-xl font-bold tracking-[0.15em] text-[#C8102E]">FULLWEI</span>
           <span className="text-sm text-[#767676]">{n.brandSub}</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden items-center gap-8 md:flex">
@@ -117,6 +119,8 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-4 md:flex">
+          <SiteSwitcher current="tw" />
+          <span className="h-4 w-px bg-[#E8E4DC]" />
           <LangDropdown isHome={isHome} />
 
           {/* Quote Request */}
@@ -136,8 +140,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile: lang dropdown + quote icon + hamburger */}
+        {/* Mobile: site switcher + lang dropdown + quote icon + hamburger */}
         <div className="flex items-center gap-3 md:hidden">
+          <SiteSwitcher current="tw" />
           <LangDropdown isHome={isHome} />
           <button
             onClick={openModal}
