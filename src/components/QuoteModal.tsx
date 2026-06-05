@@ -258,7 +258,7 @@ export default function QuoteModal() {
                 <div className="flex-1 overflow-y-auto">
                   {items.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-16 text-center">
-                      <QuoteIcon size={40} strokeWidth={1.4} className="mb-4 text-[#D4CFC8]" />
+                      <QuoteIcon size={80} strokeWidth={1.2} className="mb-4 text-[#D4CFC8]" />
                       <p className="mb-1 text-sm font-medium text-[#6B6F76]">{t.empty}</p>
                       <p className="max-w-[220px] text-xs text-[#A8A4A0]">{t.emptyHint}</p>
                     </div>
