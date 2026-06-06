@@ -82,7 +82,12 @@ export default function BlogContent() {
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-20">
         <div className="grid gap-px bg-[#E8E4DC] sm:grid-cols-2">
           {visible.map((post) => (
-            <article key={post.id} className="group bg-white transition-colors hover:bg-[#F8F6F2]">
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              aria-label={lang === 'zh' ? post.title : post.titleEn}
+              className="group block bg-white transition-colors hover:bg-[#F8F6F2]"
+            >
               {/* Thumbnail */}
               <CoverImage
                 slug={post.slug}
@@ -93,7 +98,7 @@ export default function BlogContent() {
 
               {/* Content */}
               <div className="flex flex-col gap-3 p-6">
-                <span className="inline-block border border-[#E8E4DC] px-2.5 py-0.5 font-mono text-[10px] tracking-[0.15em] text-[#064d8f]">
+                <span className="inline-block self-start border border-[#E8E4DC] px-2.5 py-0.5 font-mono text-[10px] tracking-[0.15em] text-[#064d8f]">
                   {getCategoryLabel(post.category)}
                 </span>
                 <h2 className="text-base font-bold leading-snug text-black group-hover:text-[#064d8f] transition-colors">
@@ -104,16 +109,15 @@ export default function BlogContent() {
                 </p>
                 <div className="mt-2 flex items-center justify-between">
                   <time className="font-mono text-xs text-[#767676]/60">{formatDate(post.date, lang)}</time>
-                  <Link
-                    href={`/blog/${post.slug}`}
+                  <span
+                    aria-hidden="true"
                     className="font-mono text-xs text-[#064d8f] opacity-0 transition-opacity group-hover:opacity-100"
-                    aria-label={`Read ${post.title}`}
                   >
                     →
-                  </Link>
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
