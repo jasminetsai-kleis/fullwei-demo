@@ -47,7 +47,7 @@ export default function Capabilities() {
                 </div>
 
                 {/* Image + content */}
-                <div className="grid items-start gap-10 pb-20 lg:grid-cols-[3fr_2fr] lg:gap-16 lg:pb-24">
+                <div className={`grid items-start gap-10 pb-20 lg:gap-16 lg:pb-24 ${imageLeft ? 'lg:grid-cols-[2fr_3fr]' : 'lg:grid-cols-[3fr_2fr]'}`}>
                   {/* Image */}
                   <div className={imageLeft ? '' : 'lg:order-2'}>
                     <Image
