@@ -167,7 +167,7 @@ export const posts: Post[] = [
     title: '如何選擇排氣管焊接代工廠？六大評估指標',
     titleEn: 'How to Choose an Exhaust Welding Manufacturer: 6 Criteria for OEM Buyers',
     excerpt: '選擇排氣管焊接代工廠歸結為六項指標：平台資格、焊接工法廣度、品質系統認證、薄壁材料專精、量產彈性與出口履約。本文逐項說明該問什麼、好的答案長什麼樣，並附一頁檢核表。',
-    excerptEn: 'Choosing an exhaust welding manufacturer comes down to six criteria: platform qualification, welding-method range, quality-system certification, thin-wall expertise, volume flexibility, and export fulfillment — each explained, with a one-page checklist.',
+    excerptEn: 'Choosing an exhaust welding manufacturer comes down to six criteria: platform qualification, welding-method range, quality-system certification, thin-wall material expertise, volume flexibility, and export fulfillment. This article explains what to ask under each criterion and what a strong answer looks like, then gives a one-page checklist. As of 2026, these are the questions automotive buyers raise first when sourcing a Tier 1 exhaust supplier.',
     date: '2026-06-02',
   },
   {

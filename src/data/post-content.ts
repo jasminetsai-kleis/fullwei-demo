@@ -706,34 +706,32 @@ const tier1ExhaustGuide: PostFullContent = {
 const chooseExhaustManufacturer: PostFullContent = {
   slug: 'how-to-choose-exhaust-welding-manufacturer',
   blocksEn: [
-    { t: 'h2', id: 'criterion-platform', text: 'Criterion 1: Platform Qualification Comes First' },
+    { t: 'h2', id: 'criterion-platform', text: 'Criterion 1: Platform qualification comes first' },
     { t: 'p', text: 'The first thing to confirm is which vehicle platforms a manufacturer has already mass-produced for. A supplier qualified on Honda, Nissan, or Hyundai platforms has passed an OEM SQE on-site audit and PPAP approval, which means a third party has already verified its production consistency. A shop that has only built samples and never run a production line carries clearly higher risk. Ask the supplier to list the platforms and model years it has shipped in volume.' },
 
-    { t: 'h2', id: 'criterion-methods', text: 'Criterion 2: Range of Welding Methods' },
+    { t: 'h2', id: 'criterion-methods', text: 'Criterion 2: Range of welding methods' },
     { t: 'p', text: 'A supplier that offers TIG, laser, and robotic welding fits more designs than a single-method shop. An exhaust system needs different heat input and appearance levels across the manifold, mid-pipe, and tail section. The wider the method range, the better a supplier can pick the right process for each part on the same drawing, instead of forcing one method onto every joint. Ask how many of these methods run on the supplier’s own lines.' },
 
-    { t: 'h2', id: 'criterion-iatf', text: 'Criterion 3: What IATF 16949 Actually Means' },
+    { t: 'h2', id: 'criterion-iatf', text: 'Criterion 3: What IATF 16949 actually means' },
     { t: 'p', text: 'IATF 16949 matters because it represents a traceable process-control system with a closed loop for nonconforming parts, not a certificate on a wall. Buyers can go one level deeper and ask three things: audit frequency, the corrective-action workflow, and whether statistical process control (SPC) data ships with each batch. A supplier that produces these records usually shows smaller quality variation in volume production.' },
 
-    { t: 'h2', id: 'criterion-thinwall', text: 'Criterion 4: Thin-Wall Stainless Expertise' },
+    { t: 'h2', id: 'criterion-thinwall', text: 'Criterion 4: Thin-wall stainless expertise' },
     { t: 'p', text: 'Much of an exhaust part’s success rests on controlling thermal distortion in thin-wall stainless steel. Tubes of 0.8 to 1.5 mm wall thickness warp easily under welding heat, so ask how a supplier limits that distortion: pulsed TIG, laser, or dedicated fixtures. A manufacturer that can explain its heat-input control and jig design has the stronger technical footing. A supplier that only answers "we have experience" deserves a follow-up question.' },
 
-    { t: 'h2', id: 'criterion-volume', text: 'Criterion 5: Volume Flexibility and Lead-Time Stability' },
+    { t: 'h2', id: 'criterion-volume', text: 'Criterion 5: Volume flexibility and lead-time stability' },
     { t: 'p', text: 'A supplier that handles both low-volume prototyping and high-volume production carries the lowest risk for a new model launch. Early launch needs fast samples and engineering changes, while volume production needs stable lead times and yield. A shop that can do only one of these becomes a bottleneck at some point in the model’s life cycle. Ask for the minimum prototype batch, sample lead time, and monthly production ceiling.' },
 
-    { t: 'h2', id: 'criterion-export', text: 'Criterion 6: International Orders and Export Fulfillment' },
+    { t: 'h2', id: 'criterion-export', text: 'Criterion 6: International orders and export fulfillment' },
     { t: 'p', text: 'For an OEM that exports, a supplier’s customs handling, English technical communication, and government-backed credentials are the assurance of cross-border delivery. A manufacturer holding a government export project, for example Taiwan’s International Trade Administration program, has had its export process and quality standards reviewed by a third party. As of 2026, this criterion matters most for cross-border procurement because it lowers communication and compliance risk.' },
-    { t: 'callout', text: 'Fullwei track record: manufacturing experience is concentrated on Japanese and Korean platforms such as Honda, Nissan, and Hyundai, backed by an International Trade Administration export project — matching the "platform qualification" and "export fulfillment" criteria.' },
 
     { t: 'h2', id: 'checklist', text: 'The 6-Criterion Evaluation Checklist' },
-    { t: 'p', text: 'Condensed to one page, each criterion pairs "what to ask" with "what a strong answer looks like," helping buyers judge quickly on first contact.' },
     { t: 'ul', items: [
-      'Platform qualification — Ask: which platforms and model years, in volume? Strong answer: named Honda / Nissan / Hyundai platforms',
-      'Welding-method range — Ask: which methods run in-house? Strong answer: TIG, laser, robotic — at least three',
-      'Quality system — Ask: audit frequency, SPC, corrective action? Strong answer: SPC and corrective records per batch',
-      'Thin-wall expertise — Ask: how is distortion controlled? Strong answer: specific heat-input control and jig design',
-      'Volume flexibility — Ask: minimum batch and monthly ceiling? Strong answer: both prototyping and volume, stable lead time',
-      'Export fulfillment — Ask: English window, export record, credentials? Strong answer: export track record plus government program',
+      'Platform qualification — Ask: which platforms and model years, in volume. Strong answer: named Honda / Nissan / Hyundai platforms',
+      'Welding-method range — Ask: which methods run in-house. Strong answer: TIG, laser, robotic, at least three',
+      'Quality system — Ask: audit frequency, SPC, corrective action. Strong answer: SPC and corrective records per batch',
+      'Thin-wall expertise — Ask: how distortion is controlled. Strong answer: specific heat-input control and jig design',
+      'Volume flexibility — Ask: minimum batch, monthly ceiling. Strong answer: both prototyping and volume, stable lead time',
+      'Export fulfillment — Ask: English window, export record, credentials. Strong answer: export track record plus government program',
     ] },
   ],
   relatedLinksEn: [
@@ -744,7 +742,7 @@ const chooseExhaustManufacturer: PostFullContent = {
   faqEn: [
     {
       q: 'What is the first thing to check when choosing an exhaust welding manufacturer?',
-      a: 'Check platform qualification first. A supplier qualified on Honda, Nissan, or Hyundai platforms has third-party-audited production consistency — the clearest risk signal among the six criteria.',
+      a: 'Check platform qualification first. A supplier qualified on Honda, Nissan, or Hyundai platforms has third-party audited production consistency, which is the clearest risk signal among the six criteria.',
     },
     {
       q: 'Is a single-method welding shop acceptable?',
@@ -752,7 +750,7 @@ const chooseExhaustManufacturer: PostFullContent = {
     },
     {
       q: 'What does a government export credential signal?',
-      a: 'Holding a government export project means a third party has reviewed the supplier’s export process and quality standards — a compliance and fulfillment assurance for OEMs that export.',
+      a: 'Holding a government export project means a third party has reviewed the supplier’s export process and quality standards, which is a compliance and fulfillment assurance for OEMs that export.',
     },
   ],
   blocks: [
