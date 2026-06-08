@@ -6,7 +6,8 @@ export type Block =
   | { t: 'p'; text: string }
   | { t: 'ul'; items: string[] }
   | { t: 'ol'; items: string[] }
-  | { t: 'callout'; text: string };
+  | { t: 'callout'; text: string }
+  | { t: 'table'; headers: string[]; rows: string[][] };
 
 export interface RelatedLink {
   label: string;
@@ -725,14 +726,17 @@ const chooseExhaustManufacturer: PostFullContent = {
     { t: 'p', text: 'For an OEM that exports, a supplier’s customs handling, English technical communication, and government-backed credentials are the assurance of cross-border delivery. A manufacturer holding a government export project, for example Taiwan’s International Trade Administration program, has had its export process and quality standards reviewed by a third party. As of 2026, this criterion matters most for cross-border procurement because it lowers communication and compliance risk.' },
 
     { t: 'h2', id: 'checklist', text: 'The 6-Criterion Evaluation Checklist' },
-    { t: 'ul', items: [
-      'Platform qualification — Ask: which platforms and model years, in volume. Strong answer: named Honda / Nissan / Hyundai platforms',
-      'Welding-method range — Ask: which methods run in-house. Strong answer: TIG, laser, robotic, at least three',
-      'Quality system — Ask: audit frequency, SPC, corrective action. Strong answer: SPC and corrective records per batch',
-      'Thin-wall expertise — Ask: how distortion is controlled. Strong answer: specific heat-input control and jig design',
-      'Volume flexibility — Ask: minimum batch, monthly ceiling. Strong answer: both prototyping and volume, stable lead time',
-      'Export fulfillment — Ask: English window, export record, credentials. Strong answer: export track record plus government program',
-    ] },
+    { t: 'table',
+      headers: ['Criterion', 'What to ask', 'What a strong answer looks like'],
+      rows: [
+        ['Platform qualification', 'Which platforms and model years, in volume', 'Named Honda / Nissan / Hyundai platforms'],
+        ['Welding-method range', 'Which methods run in-house', 'TIG, laser, robotic, at least three'],
+        ['Quality system', 'Audit frequency, SPC, corrective action', 'SPC and corrective records per batch'],
+        ['Thin-wall expertise', 'How distortion is controlled', 'Specific heat-input control and jig design'],
+        ['Volume flexibility', 'Minimum batch, monthly ceiling', 'Both prototyping and volume, stable lead time'],
+        ['Export fulfillment', 'English window, export record, credentials', 'Export track record plus government program'],
+      ],
+    },
   ],
   relatedLinksEn: [
     { label: 'What Is Tier 1 Exhaust System Manufacturing?', href: '/blog/tier1-exhaust-system-manufacturing-guide', desc: 'A panoramic intro from supply-chain tiers and materials to quality verification' },
@@ -774,15 +778,17 @@ const chooseExhaustManufacturer: PostFullContent = {
     { t: 'callout', text: '富惟實績：代工經驗集中於 Honda、Nissan、Hyundai 等日系與韓系平台，並取得國貿署出口專案背書——正對應「平台資格」與「出口履約」兩項指標。' },
 
     { t: 'h2', id: 'checklist', text: '六大指標檢核表' },
-    { t: 'p', text: '把六項指標整理成一頁，每一項都對應「該問什麼」與「好的答案長什麼樣」，方便採購在初次接觸時快速判斷。' },
-    { t: 'ul', items: [
-      '平台資格 — 問：量產過哪些平台與車型年份？好答案：明確列出 Honda／Nissan／Hyundai 等平台',
-      '焊接工法廣度 — 問：哪些工法在自有產線運作？好答案：TIG、雷射、機器人，至少三種',
-      '品質系統 — 問：稽核頻率、SPC、矯正措施？好答案：每批附 SPC 與矯正紀錄',
-      '薄壁專精 — 問：如何控制變形？好答案：具體的熱輸入控制與治具設計',
-      '量產彈性 — 問：最小批量與月產能上限？好答案：打樣與量產兼具、交期穩定',
-      '出口履約 — 問：英文窗口、出口實績、資格？好答案：出口實績加上政府專案背書',
-    ] },
+    { t: 'table',
+      headers: ['指標', '該問什麼', '好的答案長什麼樣'],
+      rows: [
+        ['平台資格', '量產過哪些平台與車型年份', '明確列出 Honda／Nissan／Hyundai 等平台'],
+        ['焊接工法廣度', '哪些工法在自有產線運作', 'TIG、雷射、機器人，至少三種'],
+        ['品質系統', '稽核頻率、SPC、矯正措施', '每批附 SPC 與矯正紀錄'],
+        ['薄壁專精', '如何控制變形', '具體的熱輸入控制與治具設計'],
+        ['量產彈性', '最小批量與月產能上限', '打樣與量產兼具、交期穩定'],
+        ['出口履約', '英文窗口、出口實績、資格', '出口實績加上政府專案背書'],
+      ],
+    },
   ],
   relatedLinks: [
     { label: 'Tier 1 排氣系統代工是什麼？', href: '/blog/tier1-exhaust-system-manufacturing-guide', desc: '供應鏈分級、零件材料到品質驗證的入門全景' },

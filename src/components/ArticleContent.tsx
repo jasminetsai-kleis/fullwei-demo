@@ -81,6 +81,39 @@ function RenderBlock({ block }: { block: Block }) {
           <p className="text-sm leading-relaxed text-[#1a3a5c]">{block.text}</p>
         </aside>
       );
+    case 'table':
+      return (
+        <div className="my-6 overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
+            <thead>
+              <tr>
+                {block.headers.map((h, i) => (
+                  <th
+                    key={i}
+                    className="border border-[#E8E4DC] bg-[#F5F3EE] px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wide text-black"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className={`border border-[#E8E4DC] px-4 py-2.5 align-top leading-relaxed ${ci === 0 ? 'font-medium text-black' : 'text-[#3a3a3a]'}`}
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
   }
 }
 
